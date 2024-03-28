@@ -1,4 +1,3 @@
-
 const ApiError = require("../api-error.js");
 const ContactService = require("../services/contact.service.js");
 const MongoDB = require("../utils/mongodb.util.js");
@@ -71,7 +70,7 @@ exports.delete = async (req, res, next) => {
 
 		if (!document) return next(new ApiError(404, "Contact not found"));
 
-		return res.send({ message: "Contact was deleted successfully" });
+		return res.send({message: "Contact was deleted successfully" });
 	} catch (error) {
 		return next(new ApiError(500, `Could not delete contact with id = ${req.params.id}`));
 	}
@@ -93,8 +92,7 @@ exports.deleteOne = async (req, res, next) => {
 exports.deleteAll = async (req, res, next) => {
 	try {
 		const contactService = new ContactService(MongoDB.client);
-    const deleteCount = await contactService.deleteAll();
-
+		const deleteCount = await contactService.deleteAll();
 		return res.send({
 			message: `${deleteCount} contacts were deleted successfully`,
 		});
